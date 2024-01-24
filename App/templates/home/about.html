@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>About me</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/static/home/css/base.css" rel="stylesheet">
+    <link href="/static/home/css/index.css" rel="stylesheet">
+    <link href="/static/home/css/m.css" rel="stylesheet">
+    <script src="/static/home/js/jquery.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="/static/home/js/hc-sticky.js"></script>
+    <script type="text/javascript" src="/static/home/js/comm.js"></script>
+</head>
+<body>
+{% include '/home/navbar.html' %}
+<article>
+    {% include '/home/leftSide.html'%}
+    <main class="r_box">
+        <div class="about">
+            <h1>
+                Welcome to my blog！
+            </h1>
+            <br/>
+            <p> 
+                My name is Qiaochu Zhang (Michelle Zhang), who is currently pursuing a graduate degree in Computer Science at Northeastern University. 
+                I previously studied Information System Management in the business school and gained 
+                a year of experience as a software implementation engineer. 
+            </p>
+            <p>
+                <br/>
+                With a dedicated focus on web and mobile technologies, 
+                I've accumulated valuable project experience. 
+                In early this year, I utilized Flask to establish this personal blog, aiming to document and share insights from both my personal and academic journey.
+                <br/>
+            </p>
+            <p>
+                <img src="https://zqc-blog-resources.s3.us-east-2.amazonaws.com/about/foods.jpg">
+                I am a food enthusiast who not only loves savoring delicious dishes but also enjoys the art of cooking. 
+                Over the next year, I'll be sharing the culinary delights I discover and the dishes I create, categorizing these posts as "Foods." 
+                <br/>
+            </p>
+            <p>
+                <img src="https://zqc-blog-resources.s3.us-east-2.amazonaws.com/about/travel.jpg">
+                My journey of exploration extends beyond the kitchen—
+                I never cease to explore the world. In travel-related articles, I'll provide travel guides and share my experiences and observations.<br/>
+                <br/>
+            </p>
+            <h3>“Live well, love lots, and laugh often”</h3>
+
+        </div>
+    </main>
+</article>
+{% include '/home/footer.html'%}
+</body>
+</html>

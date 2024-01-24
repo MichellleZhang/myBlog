@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Management System</title>
+    <link rel="stylesheet" type="text/css" href="/static/admin/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/static/admin/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/static/admin/css/font-awesome.min.css">
+    <link rel="apple-touch-icon-precomposed" href="/static/admin/images/icon/icon.png">
+    <link rel="shortcut icon" href="/static/admin/images/icon/favicon.ico">
+    <script src="/static/admin/js/jquery-2.1.4.min.js"></script>
+</head>
+
+<body class="user-select">
+<section class="container-fluid">
+    {% include 'admin/header.html'%}
+    <div class="row">
+        {% include 'admin/leftSide.html'%}
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-lg-10 col-md-offset-2 main" id="main">
+            <div class="row">
+                <div class="col-md-5">
+                    <h1 class="page-header">Add categories</h1>
+
+                    <form action="/admin/addcategory/" method="post" autocomplete="off">
+                        <div class="form-group">
+                            <label for="category-name">Category Name</label>
+                            <input type="text" id="category-name" name="name" class="form-control"
+                                   placeholder="enter the category name" required autocomplete="off">
+                        </div>
+                        <div class="form-group">
+                            <label for="category-describe">Category Description</label>
+                            <textarea class="form-control" id="category-describe" name="describe" rows="4"
+                                      autocomplete="off"></textarea>
+                        </div>
+                        <button class="btn btn-primary" type="submit" name="submit">Add new category</button>
+                    </form>
+
+
+                </div>
+                <div class="col-md-7">
+                    <h1 class="page-header">Management </h1>
+                    <div class="table-responsive">
+                        <table class="table table-striped table-hover">
+                            <thead>
+                                <tr>
+                                    <th><span class="glyphicon glyphicon-paperclip"></span>
+                                        <span>ID</span>
+                                    </th>
+                                    <th><span class="glyphicon glyphicon-file"></span>
+                                        <span>Name</span>
+                                    </th>
+                                    <th><span class="glyphicon glyphicon-pencil"></span>
+                                        <span>Operations</span>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for category in categories %}
+                                    <tr>
+                                        <td>{{category.id}}</td>
+                                        <td>{{category.name}}</td>
+                                        <td>
+                                            <a href="/admin/updateCategory/{{category.id}}/" >modify</a>
+                                            <a href="#" cid = "{{category.id}}">delete</a>
+                                        </td>
+                                    </tr>
+                                {% endfor%}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<script src="/static/admin/js/bootstrap.min.js"></script>
+<script src="/static/admin/js/admin-scripts.js"></script>
+<script>
+    //delete double check
+    $(function () {
+        $("#main table tbody tr td a").click(function () {
+            var that = $(this);
+            var id = that.attr("cid"); 
+            if (event.srcElement.outerText === "delete") {
+                if (window.confirm("Are you sure to delete it?")) {
+                    $.post('/admin/deletecategory/',{'id': id}, function(data){
+                        if (data.code == 200){
+                            location.reload()
+                        }
+                    })
+                }
+            }
+        })
+    });
+</script>
+</body>
+</html>

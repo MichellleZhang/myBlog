@@ -1,0 +1,22 @@
+<aside class="col-sm-3 col-md-2 col-lg-2 sidebar">
+    <ul class="nav nav-sidebar">
+        <li {% if request.path == '/admin/index/' or request.path == '/admin/'%}class="active"{% endif %}>
+            <a href="/admin/index/">Overview</a>
+        </li>
+    </ul>
+    <ul class="nav nav-sidebar">
+        <li {% if request.path == '/admin/category/' %}class="active"{% endif %}>
+            <a href="/admin/category/">Categories Management</a>
+        </li>
+    </ul>
+    <ul class="nav nav-sidebar">
+        <li {% if request.path.startswith('/admin/article/') %} class="active"{% endif %}>
+            <a href="/admin/article/">Article Management</a>
+        </li>
+    </ul>
+    <ul class="nav nav-sidebar">
+        <li {% if request.path.startswith('/admin/accomplishments/') %} class="active"{% endif %}>
+            <a href="/admin/accomplishments/">Accomplishments Management</a>
+        </li>
+    </ul>
+</aside>

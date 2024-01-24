@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Management System</title>
+    <link rel="stylesheet" type="text/css" href="/static/admin/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/static/admin/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/static/admin/css/login.css">
+    <link rel="apple-touch-icon-precomposed" href="/static/admin/images/icon/icon.png">
+    <script src="/static/admin/js/jquery-2.1.4.min.js"></script>
+</head>
+
+<body class="user-select">
+<div class="container">
+    <div class="siteIcon">
+        <img src="/static/admin/images/icon/icon.png"
+             alt=""
+             data-toggle="tooltip"
+             data-placement="top" title="Welcome to use ZQC's blog system"
+             draggable="false"/>
+    </div>
+
+    <form action="/admin/login/" method="post" autocomplete="off" class="form-signin">
+        <h2 class="form-signin-heading">Administator Login</h2>
+        <label for="userName" class="sr-only">Username</label>
+        <input type="text" id="userName" name="username" class="form-control" placeholder="Please enter the username" required
+               autofocus autocomplete="off" maxlength="10">
+        <label for="userPwd" class="sr-only">Password</label>
+        <input type="password" id="userPwd" name="userpwd" class="form-control" placeholder="Please enter the password" required
+               autocomplete="off" maxlength="18">
+        <a href="#">
+            <button class="btn btn-lg btn-primary btn-block" type="submit" id="signinSubmit">Login</button>
+        </a>
+    </form>
+
+    <div class="footer">
+        <p><a href="/admin/" data-toggle="tooltip" data-placement="left" title="forget password?">Forget Password →</a>
+        </p>
+    </div>
+
+</div>
+<script src="/static/admin/js/bootstrap.min.js"></script>
+<script>
+    $('[data-toggle="tooltip"]').tooltip();
+    window.oncontextmenu = function () {
+        //return false;
+    };
+    $('.siteIcon img').click(function () {
+        window.location.reload();
+    });
+    $('#signinSubmit').click(function () {
+        if ($('#userName').val() === '') {
+            $(this).text('usename cannot be empty');
+        } else if ($('#userPwd').val() === '') {
+            $(this).text('password cannot be empty');
+        } else {
+            $(this).text('Loading...');
+        }
+    });
+</script>
+</body>
+</html>

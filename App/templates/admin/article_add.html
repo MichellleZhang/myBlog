@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Management System</title>
+    <link rel="stylesheet" type="text/css" href="/static/admin/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/static/admin/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/static/admin/css/font-awesome.min.css">
+    <link rel="apple-touch-icon-precomposed" href="/static/admin/images/icon/icon.png">
+    <script src="/static/admin/js/jquery-2.1.4.min.js"></script>
+</head>
+
+<body class="user-select">
+<section class="container-fluid">
+    {% include 'admin/header.html'%}
+    <div class="row">
+        {% include 'admin/leftSide.html'%}
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-lg-10 col-md-offset-2 main" id="main">
+            <div class="row">
+                <form action="/admin/article/add/" method="post" class="add-article-form"
+                      enctype="multipart/form-data">
+                    <div class="col-md-9">
+                        <h1 class="page-header">Add an Article</h1>
+
+                        <div class="add-article-box">
+                            <h2 class="add-article-box-title"><span>Article Title</span></h2>
+                            <div class="add-article-box-content">
+                                <input type="text" class="form-control" placeholder="Enter title" name="name"
+                                       autocomplete="off">
+                            </div>
+                        </div>
+
+                        <div class="add-article-box">
+                            <h2 class="add-article-box-title"><span>Keywords</span></h2>
+                            <div class="add-article-box-content">
+                                <input type="text" class="form-control" placeholder="Please enter Keywords" name="keywords"
+                                       autocomplete="off">
+                                <span class="prompt-text">using , to separate tags</span>
+                            </div>
+                        </div>
+
+                        <div class="add-article-box">
+                            <h2 class="add-article-box-title"><span>Content</span></h2>
+                            <div class="add-article-box-content">
+                                <textarea cols="5" class="form-control" name="content" autocomplete="off"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <h1 class="page-header">Operations</h1>
+                        <div class="add-article-box">
+                            <h2 class="add-article-box-title"><span>Select Category</span></h2>
+                            <div class="add-article-box-content">
+                                <ul class="category-list">
+                                    {% for category in categories %}
+                                        <li>
+                                            <label>
+                                                <input name="category" value = {{category.id}} type="radio">{{category.name}}
+                                            </label>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="add-article-box">
+                            <h2 class="add-article-box-title"><span>Choose an Image</span></h2>
+                            <div class="add-article-box-content">
+                                <input type="file" name="img" id="file">
+                            </div>
+                            <div class="add-article-box-footer">
+                                <img id="myimg" src="" alt="" width="130" height="100">
+                            </div>
+                        </div>
+                        <div class="add-article-box">
+                            <div class="add-article-box-footer">
+                                <button style="width: 100%" class="btn btn-primary" type="submit" name="submit">Publish</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="/static/admin/js/bootstrap.min.js"></script>
+<script src="/static/admin/js/admin-scripts.js"></script>
+<script src="lib/ueditor/ueditor.config.js"></script>
+<script src="lib/ueditor/ueditor.all.min.js"></script>
+<script src="lib/ueditor/lang/zh-cn/zh-cn.js"></script>
+
+<script>
+    // display selected img
+    $("#file").change(function(){
+        $("#myimg").attr("src",URL.createObjectURL($(this)[0].files[0]));
+    });
+
+</script>
+
+</body>
+</html>
