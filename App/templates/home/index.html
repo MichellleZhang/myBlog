@@ -18,16 +18,23 @@
         <article>
             {% include '/home/leftSide.html'%}
             <main class="r_box">
+                <div class="container">
+                    <div class="welcomeTitle" title="welcome">Welcome to my blog</div>
+                </div>
                 <ul>
                     {% for article in articles %}
-                        <li>
-                            <i><a href="#"><img src="https://zqc-blog-resources.s3.us-east-2.amazonaws.com/{{article.img}}"></a></i>
-                            <h3><a href="#"> {{article.name}}</a></h3>
-                            <p> {{article.content}}</p>
-                        </li>
+                        {% if loop.index <= 5 %}
+                            <li>
+                                <i><a href="#"><img src="https://zqc-blog-resources.s3.us-east-2.amazonaws.com/{{article.img}}"></a></i>
+                                <h3><a href="#"> {{article.name}}</a></h3>
+                                <p> {{article.content}}</p>
+                            </li>
+                        {% endif %}
                     {%endfor%}
                 </ul>
-
+                <div class="btn_center">
+                    <a href="/article/"><button class="exploreBtn">Explore More</button></a>
+                </div>
             </main>
         </article>
         {% include '/home/footer.html'%}

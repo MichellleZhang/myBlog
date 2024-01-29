@@ -15,24 +15,26 @@
             </ul>
         </div>
     {% endif%}
-
-    <div class="search">
-        <form action="" method="post" name="searchform" id="searchform">
-            <input name="keyboard" id="keyboard" class="input_text" value="enter keyword"
-                style="color: rgb(153, 153, 153);"
-                onfocus="if(value=='enter keyword'){this.style.color='#000';value=''}"
-                onblur="if(value==''){this.style.color='#999';value='enter keyword'}" type="text">
-            <input name="show" value="title" type="hidden">
-            <input name="tempid" value="1" type="hidden">
-            <input name="tbname" value="news" type="hidden">
-            <input name="Submit" class="input_submit" value="Search" type="button">
-        </form>
-    </div>
+    {% if renderSearch%}
+        <div class="search">
+            <form action="" method="post" name="searchform" id="searchform">
+                <input name="keyboard" id="keyboard" class="input_text" value="enter keyword"
+                    style="color: rgb(153, 153, 153);"
+                    onfocus="if(value=='enter keyword'){this.style.color='#000';value=''}"
+                    onblur="if(value==''){this.style.color='#999';value='enter keyword'}" type="text">
+                <input name="show" value="title" type="hidden">
+                <input name="tempid" value="1" type="hidden">
+                <input name="tbname" value="news" type="hidden">
+                <input name="Submit" class="input_submit" value="Search" type="button">
+            </form>
+        </div>
+    {% endif %}
+    
     <div class="fenlei">
         <h2>Article Categories</h2>
         <ul>
             {% for category in categories%}
-                <li><a href="#">{{category.name}}</a></li>
+                <li><a href="/article/{{category.id}}/">{{category.name}}</a></li>
             {% endfor %}
         </ul>
     </div>
@@ -41,13 +43,13 @@
         <h2>Connect with me</h2>
         <ul style="list-style: none; padding: 0px 20px;">
             <li style="display: block; margin-bottom: 10px;">
-                <a href="https://www.instagram.com/zzmichelle/">Instagram</a>
+                <a href="https://www.instagram.com/zzmichelle/" target="_blank"> Instagram</a>
             </li> 
             <li style="display: block; margin-bottom: 10px;">
-                <a href="https://www.linkedin.com/in/qiaochuzhang">Linkedin</a>
+                <a href="https://www.linkedin.com/in/qiaochuzhang" target="_blank">Linkedin</a>
             </li>
             <li style="display: block; margin-bottom: 10px;">
-                <a href="https://github.com/MichellleZhang">Github</a>
+                <a href="https://github.com/MichellleZhang" target="_blank">Github</a>
             </li>
         </ul>
     </div>
