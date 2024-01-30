@@ -19,7 +19,7 @@ jobs:
         uses: actions/checkout@v1
         
       - name: Create ZIP deploymnet package 
-        uses: zip -r ${{ env.DEPLOY_PACKAGE_NAME }} ./ -x *.git*
+        uses: zip -r ${{ env.DEPLOY_PACKAGE_NAME }} ./ -x '*.git*'
         
       - name: Configure aws credentils
         uses: aws-actions/configure-aws-credentials@v1
