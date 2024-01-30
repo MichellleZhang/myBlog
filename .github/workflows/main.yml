@@ -1,0 +1,39 @@
+name: CI-CD-Pipeline-to-AWSElasticBeanstalk
+env: 
+  EB_PACKAGE_S3_BUCKET_NAME : "zqc-blog-resources"
+  EB_APPLICATION_NAME : "myBlog"
+  EB_ENVIRONMENT_NAME : "MyBlogg-env"
+  DEPLOY_PACKAGE_NAME : "myblog-${{ github.sha}}.zip"
+  AWS_REGION_NAME : "us-east-2"
+
+on: 
+  push: 
+    branches:
+      - main
+jobs: 
+  my_ci_pipeline:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Git clone repository 
+        uses: actions/checkout@v1
+        
+      - name: Create ZIP deploymnet package 
+        uses: zip -r ${{ env.DEPLOY_PACKAGE_NAME }} ./ -x *.git*
+        
+      - name: Configure aws credentils
+        uses: aws-actions/configure-aws-credentilas@v1
+        with: 
+          aws-access-key-id : ${{secrets.MY_AWS_ACCESS_KEY }}
+          aws-secret-access-key : ${{secrets.MY_AWS_SECRET_KEY }}
+          aws-region : $ {{ env.AWS_REGION_NAME }}
+
+      - name: Copy deployment package to s3 bucket 
+        run: aws s3 cp ${{ env.DEPLOY_PACKAGE_NAME }} s3://${{ env.EB_PACKAGE_S3_BUCKET_NAME }}/
+
+      - name: print message on completion of CI Pipeline
+        run : echo "CI Pipeline part finished successfully"
+
+        
+        
+        
