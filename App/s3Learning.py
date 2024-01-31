@@ -32,4 +32,3 @@ BUCKET_NAME = 'zqc-blog-resources'
 
 with open("/Users/zqc/Desktop/blogResoueces/about/avatar.jpeg", "rb") as f:
     s3.upload_fileobj(f, BUCKET_NAME, "about/avatar.jpg", ExtraArgs={"ACL":"public-read"})
-
