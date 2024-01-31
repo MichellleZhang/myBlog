@@ -9,7 +9,7 @@ blog = Blueprint('blog', __name__)
 def home():
     photos = PhotoModel.query.limit(6)
     categories = CategoryModel.query.all()
-    articles = ArticalModel.query.all()
+    articles = ArticalModel.query.order_by(ArticalModel.id.desc()).all()
     return render_template('home/index.html',
                            photos = photos,
                            categories = categories,
@@ -29,10 +29,10 @@ def blog_photo():
 def blog_articles(categoryId = None):
     if categoryId: 
         categories = CategoryModel.query.filter_by(id = categoryId).all()
-        articles = ArticalModel.query.filter_by(category_id = categoryId).all()
+        articles = ArticalModel.query.filter_by(category_id = categoryId).order_by(ArticalModel.id.desc()).all()
     else:
         categories = CategoryModel.query.all()
-        articles = ArticalModel.query.all()
+        articles = ArticalModel.query.order_by(ArticalModel.id.desc()).all()
     # renderSearch = True after finishing search function
     return render_template('home/article.html',
                            categories = categories,

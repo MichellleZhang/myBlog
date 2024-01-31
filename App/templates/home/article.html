@@ -12,38 +12,40 @@
     <script type="text/javascript" src="/static/home/js/comm.js"></script>
 </head>
 <body>
-{% include '/home/navbar.html' %}
-<article>
-    {% include '/home/leftSide.html'%}
-    <main class="r_box">
-        <ul>
-            {% for article in articles %}
+    {% include '/home/navbar.html' %}
+    <article>
+        {% include '/home/leftSide.html'%}
+        <main class="r_box">
+            <ul>
+                {% for article in articles %}
                 <li>
                     <i><a href="#">
-                        <img src="https://zqc-blog-resources.s3.us-east-2.amazonaws.com/{{article.img}}">
-                    </a></i>
-                    <h3><a href="#"> {{article.name}}</a></h3>
+                            <img src="https://zqc-blog-resources.s3.us-east-2.amazonaws.com/{{article.img}}">
+                        </a></i>
+                    <h3 class="collapsible"><a href="#"> {{article.name}}</a></h3>
                     <p> {{article.content}}</p>
                 </li>
-            {% endfor %}
-        </ul>
-    </main>
-</article>
-{% include '/home/footer.html'%}
+                {% endfor %}
+            </ul>
+        </main>
+    </article>
+    {% include '/home/footer.html'%}
 </body>
-<script> 
+<script>
     var coll = document.getElementsByClassName("collapsible");
     var i;
     for (i = 0; i < coll.length; i++) {
-    coll[i].addEventListener("click", function() {
-        this.classList.toggle("active");
-        var content = this.nextElementSibling;
-        if (content.style.display === "block") {
-        content.style.display = "none";
-        } else {
-        content.style.display = "block";
-        }
-    });
-}
+        coll[i].addEventListener("click", function () {
+            this.classList.toggle("active");
+            var content = this.nextElementSibling;
+            if (content.style.display === "block" || content.style.display === "") {
+                content.style.display = "-webkit-box";
+                content.style.webkitBoxOrient = "vertical";
+                content.style.webkitLineClamp = "2";
+            } else {
+                content.style.display = "block";
+            }
+        });
+    }
 </script>
 </html>
