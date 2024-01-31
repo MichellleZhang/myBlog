@@ -10,7 +10,7 @@ The sections covered by the blog include home page, accomplishments page, sharin
 - framwork: flask 
 - database: mysql
 # Highlights
-- store and organize data in Amazon AWS
+- store and organize data in Amazon RDS
 - store static resources in S3
 - built a CI/CD pipepine with Github Actions to achieve automatically deployment
 - deploy and manage the application in AWS Elastic Beanstalk
